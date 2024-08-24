@@ -1,30 +1,29 @@
 {% extends 'usuarios/base.html' %}
 {% block conteudo %}
-<div class="container">
-    <h1>Lista de Usuários</h1>
-    <a href="{% url 'create_usuario' %}" class="btn btn-primary mb-3">Adicionar Usuário</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Idade</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for usuario in usuarios %}
-            <tr>
-                <td>{{ usuario.id }}</td>
-                <td>{{ usuario.nome }}</td>
-                <td>{{ usuario.idade }}</td>
-                <td>
-                    <a href="{% url 'update_usuario' usuario.id %}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="{% url 'delete_usuario' usuario.id %}" class="btn btn-danger btn-sm">Excluir</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+<div class='container'>
+    <h1>Lista de Usuários cadastrados</h1>
+    <form action="{% url 'listagem_usuarios' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
+    </form>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Ações</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.idade }}</td>
+            <td>
+                <a href="{% url 'editar_usuario' usuario.pk %}">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
     </table>
 </div>
 {% endblock %}

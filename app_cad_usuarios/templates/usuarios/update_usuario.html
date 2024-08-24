@@ -1,11 +1,16 @@
 {% extends 'usuarios/base.html' %}
 {% block conteudo %}
-<div class="container">
-    <h1>Atualizar Usuário</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Salvar</button>
-    </form>
-</div>
+<form action="{% url 'editar_usuario' usuario.id %}" method="post">
+  {% csrf_token %}
+  <div style="text-align: center;" class="container_cad_usuario">
+      <h1>Editar Usuário</h1>
+      <label for="nome">Nome </label>
+      <input class="input_nome" type="text" id="nome" name="nome" value="{{ usuario.nome }}" required>
+
+      <label for="idade">Idade </label>
+      <input class="input_idade" type="number" id="idade" name="idade" value="{{ usuario.idade }}" required>
+
+      <button type="submit">Atualizar</button>
+  </div>
+</form>
 {% endblock %}
