@@ -1,16 +1,11 @@
 {% extends 'usuarios/base.html' %}
 {% block conteudo %}
-<form action="{% url 'criar_usuario' %}" method="post">
-  {% csrf_token %}
-  <div style="text-align: center;" class="container_cad_usuario">
-      <h1>Criar Novo Usuário</h1>
-      <label for="nome">Nome </label>
-      <input class="input_nome" type="text" id="nome" name="nome" required>
-
-      <label for="idade">Idade </label>
-      <input class="input_idade" type="number" id="idade" name="idade" required>
-
-      <button type="submit">Enviar</button>
-  </div>
-</form>
+<div class="container">
+    <h1>Criar Novo Usuário</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
 {% endblock %}

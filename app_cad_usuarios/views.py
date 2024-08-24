@@ -4,7 +4,6 @@ from .forms import UsuarioForm
 
 def home(request):
     return render(request, 'usuarios/home.html')
-
 def listagem_usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'usuarios/usuarios.html', {'usuarios': usuarios})

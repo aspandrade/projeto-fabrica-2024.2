@@ -1,21 +1,13 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Cadastre-me!</title>
-</head>
-<body>
-    <nav style='background-color: aquamarine  !important;' class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1" ><a class="navbar-brand" href="{% url 'home' %}">Cadastre-me!</a></span>
-        </div>
-    </nav>
-    <div class="container mt-4">
-        {% block conteudo %}
-        {% endblock %}
+{% extends 'usuarios/base.html' %}
+
+{% block conteudo %}
+    <div class="container">
+        <h1>Editar Usuário</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'listar_usuarios' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}
