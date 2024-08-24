@@ -1,0 +1,21 @@
+{% extends 'usuarios/base.html' %}
+{% block conteudo %}
+<div class='container'>
+    <h1>Lista de Usuários cadastrados</h1>
+    <table class="table table-bordered table-stripe">
+        <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>idade</th>
+        </tr>
+        {% for usuario in usuarios %} <!-- Laço de repetição com django -->
+        <tr>
+            <td>{{usuario.id_usuario}}</td>
+            <td>{{usuario.nome}}</td>
+            <td>{{usuario.idade}}</td>
+        </tr>
+        {% endfor %} <!-- Fim do laço de repetição -->
+    </table>
+</div>
+{% endblock %}
+    
